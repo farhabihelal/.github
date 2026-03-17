@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: 💬 Discussion / Question
+    url: https://github.com/farhabihelal/.github/discussions
+    about: For general questions and discussions, please use GitHub Discussions.
+  - name: 🔒 Security Vulnerability
+    url: https://github.com/farhabihelal/.github/security/advisories/new
+    about: Please report security vulnerabilities privately using GitHub Security Advisories.
