@@ -1,0 +1,149 @@
+# ~/.gitconfig — Farhabi Helal's Git Configuration
+# https://github.com/farhabihelal
+#
+# Copy to home directory: cp configs/.gitconfig ~/.gitconfig
+# Note: Set your email/name per-repo if working with multiple identities
+# =============================================================================
+
+[user]
+    name  = Farhabi Helal
+    # email = your-email@example.com  # Set per-repo or uncomment
+
+[core]
+    editor       = vim
+    autocrlf     = input          # Normalize line endings on commit (LF)
+    whitespace   = fix            # Fix trailing whitespace
+    pager        = less -FX
+    excludesfile = ~/.gitignore_global
+
+[init]
+    defaultBranch = main
+
+[pull]
+    rebase = false                # Default: merge (not rebase) on pull
+
+[push]
+    default        = current      # Push current branch to same-name remote branch
+    autoSetupRemote = true        # Auto-create remote tracking branch
+
+[fetch]
+    prune = true                  # Remove remote-tracking refs that no longer exist
+
+[merge]
+    tool = vimdiff
+    conflictstyle = diff3         # Show base in merge conflicts
+
+[diff]
+    tool       = vimdiff
+    algorithm  = histogram        # Better diff algorithm
+    colorMoved = default          # Highlight moved code in diffs
+
+[rebase]
+    autosquash = true             # Auto-squash fixup! commits
+    autostash  = true             # Stash before rebase if needed
+
+[status]
+    short    = true
+    branch   = true
+    showUntrackedFiles = all
+
+[log]
+    abbrevCommit = true
+    date         = relative
+
+[color]
+    ui = auto
+
+[color "branch"]
+    current  = yellow bold
+    local    = green
+    remote   = cyan
+
+[color "diff"]
+    meta       = yellow bold
+    frag       = magenta bold
+    old        = red bold
+    new        = green bold
+    whitespace = red reverse
+
+[color "status"]
+    added     = green bold
+    changed   = yellow bold
+    untracked = red
+
+[alias]
+    # Status
+    st   = status -sb
+    ss   = status --short
+
+    # Staging
+    a    = add
+    aa   = add --all
+    ap   = add --patch
+
+    # Commit
+    c    = commit
+    cm   = commit -m
+    ca   = commit --amend
+    can  = commit --amend --no-edit
+    fixup = commit --fixup
+
+    # Log (pretty)
+    lg   = log --oneline --graph --decorate --all
+    ll   = log --oneline --decorate
+    lf   = log --follow --patch --
+
+    # Branch
+    b    = branch
+    ba   = branch -a
+    bd   = branch -d
+    bD   = branch -D
+    co   = checkout
+    cob  = checkout -b
+    sw   = switch
+    swc  = switch -c
+
+    # Remote
+    p    = push
+    pu   = push -u origin HEAD
+    pf   = push --force-with-lease
+    pl   = pull
+    f    = fetch --prune
+
+    # Diff
+    d    = diff
+    ds   = diff --staged
+    dw   = diff --word-diff
+
+    # Stash
+    sth  = stash
+    stp  = stash pop
+    stl  = stash list
+
+    # Rebase
+    rb   = rebase
+    rbi  = rebase -i
+    rbc  = rebase --continue
+    rba  = rebase --abort
+
+    # Reset
+    unstage  = restore --staged
+    discard  = restore
+    uncommit = reset --soft HEAD~1
+
+    # Useful info
+    tags    = tag -l
+    remotes = remote -v
+    authors = shortlog -sn --all
+
+    # Find commits by message
+    find = log --all --oneline --grep
+
+    # Show last commit
+    last = log -1 HEAD --stat
+
+[credential]
+    helper = cache --timeout=3600
+
+[http]
+    postBuffer = 524288000        # 500MB — useful for large repos
